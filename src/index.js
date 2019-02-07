@@ -34,11 +34,7 @@ class Board extends React.Component {
   }
 
   renderRows(i) {
-    return (
-      <div key={"row " + i / 3} className="board-row">
-        {this.renderSquares(i)}
-      </div>
-    );
+    return <div className="board-row">{this.renderSquares(i)}</div>;
   }
 
   render() {
@@ -132,6 +128,8 @@ class Game extends React.Component {
     let status;
     if (winner) {
       status = "Winner: " + winner.player + " @ " + winner.line;
+    } else if (!current.squares.includes(null)) {
+      status = "draw";
     } else {
       status = "Next player: " + (this.state.xIsNext ? "X" : "O");
     }
